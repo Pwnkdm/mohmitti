@@ -133,16 +133,16 @@ const PlantShowcase = ({ onPlantClick }) => {
                     <p className="text-stone-400 text-lg max-w-2xl mx-auto mb-10">Discover our premium selection of hardy indoor and vibrant outdoor ornamental plants.</p>
 
                     {/* Category Tabs */}
-                    <div className="inline-flex bg-white/5 backdrop-blur-xl p-1.5 rounded-full border border-white/10 shadow-lg">
+                    <div className="inline-flex flex-wrap justify-center gap-2 bg-white/5 backdrop-blur-xl p-1.5 rounded-3xl md:rounded-full border border-white/10 shadow-lg">
                         <button
                             onClick={() => setActiveCategory('indoor')}
-                            className={`px-8 py-3 rounded-full text-sm font-bold transition-all ${activeCategory === 'indoor' ? 'bg-amber-500 text-amber-950 shadow-md' : 'text-stone-300 hover:text-white'}`}
+                            className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-sm font-bold transition-all ${activeCategory === 'indoor' ? 'bg-amber-500 text-amber-950 shadow-md' : 'text-stone-300 hover:text-white'}`}
                         >
                             Indoor Plants
                         </button>
                         <button
                             onClick={() => setActiveCategory('outdoor')}
-                            className={`px-8 py-3 rounded-full text-sm font-bold transition-all ${activeCategory === 'outdoor' ? 'bg-amber-500 text-amber-950 shadow-md' : 'text-stone-300 hover:text-white'}`}
+                            className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-sm font-bold transition-all ${activeCategory === 'outdoor' ? 'bg-amber-500 text-amber-950 shadow-md' : 'text-stone-300 hover:text-white'}`}
                         >
                             Outdoor Ornamentals
                         </button>
@@ -163,27 +163,27 @@ const PlantShowcase = ({ onPlantClick }) => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.6, delay: idx * 0.2 }}
-                                className="relative group cursor-pointer w-full flex flex-col items-center pt-24 pb-8"
+                                className="relative group cursor-pointer w-full flex flex-col items-center pt-8 pb-8"
                                 onClick={() => onPlantClick(plant)}
                             >
                                 {/* The plant image - hovering/floating above the platform */}
                                 <motion.div
-                                    className="absolute top-0 w-full flex justify-center z-20"
+                                    className="relative w-full flex justify-center z-20 -mb-20 md:-mb-32"
                                     whileHover={{ y: -15, scale: 1.05 }}
                                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 >
                                     <img
                                         src={plant.image}
                                         alt={plant.name}
-                                        className="h-80 object-contain drop-shadow-[0_25px_25px_rgba(0,0,0,0.25)] group-hover:drop-shadow-[0_35px_35px_rgba(32,154,103,0.3)] transition-all duration-300"
+                                        className="h-56 sm:h-64 md:h-72 lg:h-80 object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.4)] group-hover:drop-shadow-[0_35px_35px_rgba(32,154,103,0.3)] transition-all duration-300 pointer-events-none"
                                     />
                                 </motion.div>
 
                                 {/* Blur mirror platform - Dark Mode Frosted Glass */}
-                                <div className="w-full mt-36 bg-white/5 backdrop-blur-[32px] border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] rounded-3xl p-6 pt-20 flex flex-col items-center relative z-10 overflow-hidden group-hover:bg-white/10 transition-all duration-300">
+                                <div className="w-full bg-white/10 backdrop-blur-[24px] border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-3xl p-6 pt-28 md:pt-36 flex flex-col items-center relative z-10 overflow-hidden group-hover:bg-white/15 group-hover:border-white/30 transition-all duration-300">
 
                                     {/* Subtle reflection effect at the top of the card */}
-                                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-t-3xl border-t border-white/20"></div>
+                                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/15 to-transparent pointer-events-none rounded-t-3xl border-t border-white/20"></div>
 
                                     <h3 className="text-xl font-bold text-stone-100 mb-1 text-center leading-tight">{plant.subtitle}</h3>
                                     <p className="text-stone-400 text-xs mb-4 font-medium italic text-center opacity-90">{plant.name}</p>

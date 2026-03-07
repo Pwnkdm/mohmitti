@@ -110,10 +110,10 @@ const Hero = () => {
         <section className={`relative w-full min-h-screen overflow-hidden bg-gradient-to-br ${activePlant.bgColor} transition-colors duration-1000 ease-in-out flex flex-col justify-end lg:justify-center`}>
 
             {/* Main Container */}
-            <div className="w-full h-full min-h-screen px-6 md:px-12 lg:px-24 py-12 lg:py-0 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10 pt-24 lg:pt-0">
+            <div className="w-full h-full min-h-screen px-6 md:px-12 lg:px-24 pb-24 lg:py-0 flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-8 md:gap-12 relative z-10 pt-36 md:pt-40 lg:pt-0">
 
                 {/* Center Typography (Background Layer) */}
-                <div className="absolute top-1/4 lg:top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 -translate-y-1/4 text-center w-full z-0 pointer-events-none select-none">
+                <div className="absolute top-[35%] lg:top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 -translate-y-1/4 text-center w-full z-0 pointer-events-none select-none">
                     <AnimatePresence mode="wait">
                         <motion.h1
                             key={`bg-title-${activeIndex}`}
@@ -121,7 +121,7 @@ const Hero = () => {
                             animate={{ opacity: 0.05, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.8 }}
-                            className="text-[12vw] font-black uppercase text-emerald-900/10 tracking-tighter whitespace-nowrap"
+                            className="text-[14vw] md:text-[12vw] font-black uppercase text-emerald-900/10 tracking-tighter whitespace-nowrap"
                         >
                             {activePlant.shortName}
                         </motion.h1>
@@ -129,18 +129,27 @@ const Hero = () => {
                 </div>
 
                 {/* Center-Left: Hero Image */}
-                <div className="w-full lg:w-[45%] h-[40vh] lg:h-[70vh] relative z-20 flex justify-center items-center">
+                <div className="w-full lg:w-[45%] h-[35vh] sm:h-[40vh] md:h-[45vh] lg:h-[70vh] relative z-20 flex justify-center items-center mt-6 lg:mt-0">
                     <AnimatePresence mode="wait">
-                        <motion.img
-                            key={`image-${activeIndex}`}
-                            src={activePlant.image}
-                            alt={activePlant.name}
-                            variants={slideVariants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="absolute max-w-[120%] max-h-[120%] object-contain filter drop-shadow-2xl mix-blend-multiply origin-center"
-                        />
+                        <div key={`container-${activeIndex}`} className="relative h-full flex flex-col justify-center items-center">
+                            <motion.img
+                                src={activePlant.image}
+                                alt={activePlant.name}
+                                variants={slideVariants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                className="relative z-10 max-w-[120%] max-h-[120%] object-contain filter drop-shadow-2xl mix-blend-multiply origin-center"
+                            />
+                            {/* Realistic Ground Shadow */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 0.8, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                transition={{ duration: 0.8, delay: 0.3 }}
+                                className="absolute bottom-[2%] w-[70%] h-8 bg-black/60 blur-2xl rounded-[100%] pointer-events-none"
+                            />
+                        </div>
                     </AnimatePresence>
                 </div>
 
@@ -238,7 +247,7 @@ const Hero = () => {
                         <button
                             key={plant.id}
                             onClick={() => handleThumbnailClick(idx)}
-                            className={`relative w-16 h-16 rounded-full overflow-hidden border-2 transition-all duration-300 ${activeIndex === idx ? 'border-amber-400 scale-110 shadow-md' : 'border-transparent scale-100 hover:scale-105 opacity-60 hover:opacity-100'}`}
+                            className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 transition-all duration-300 ${activeIndex === idx ? 'border-amber-400 scale-110 shadow-md' : 'border-transparent scale-100 hover:scale-105 opacity-60 hover:opacity-100'}`}
                         >
                             <div className={`absolute inset-0 bg-gradient-to-br ${plant.bgColor} opacity-50`}></div>
                             <img src={plant.thumbnail} alt={`Thumbnail ${plant.shortName}`} className="absolute w-[120%] h-[120%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain mix-blend-multiply filter drop-shadow-md" />

@@ -21,15 +21,17 @@ const Footer = () => {
                             Bringing the lush serenity of the outdoors into your premium living spaces. Curated, hardy, and beautiful ornamental plants.
                         </p>
                         <div className="flex items-center gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-white hover:bg-emerald-600 hover:border-emerald-500 transition-all">
+                            <a href="https://www.instagram.com/mohmitti_?igsh=NWE3ZWhibjNxeHI2" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-white hover:bg-emerald-600 hover:border-emerald-500 transition-all">
                                 <Instagram className="w-5 h-5" />
                             </a>
+                            {/* 
                             <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-white hover:bg-emerald-600 hover:border-emerald-500 transition-all">
                                 <Facebook className="w-5 h-5" />
                             </a>
                             <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-white hover:bg-emerald-600 hover:border-emerald-500 transition-all">
                                 <Twitter className="w-5 h-5" />
-                            </a>
+                            </a> 
+                            */}
                         </div>
                     </div>
 
