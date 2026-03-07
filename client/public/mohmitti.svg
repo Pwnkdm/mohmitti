@@ -1,0 +1,27 @@
+<svg width="322" height="342" viewBox="0 0 322 342" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="favicon-mark" fill="#2E3A23">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M161 10C89.2 10 31 68.2 31 140C31 211.8 89.2 270 161 270C232.8 270 291 211.8 291 140C291 68.2 232.8 10 161 10ZM41 140C41 73.7 94.7 20 161 20C227.3 20 281 73.7 281 140C281 206.3 227.3 260 161 260C94.7 260 41 206.3 41 140Z" />
+    
+    <circle cx="161" cy="75" r="38"/>
+    <circle cx="115" cy="105" r="35"/>
+    <circle cx="207" cy="105" r="35"/>
+    <circle cx="82" cy="145" r="28"/>
+    <circle cx="240" cy="145" r="28"/>
+    <circle cx="125" cy="155" r="30"/>
+    <circle cx="197" cy="155" r="30"/>
+    <circle cx="161" cy="130" r="35"/>
+
+    <path d="M142 150 L180 150 L172 215 L150 215 Z"/>
+
+    <path d="M150 210 C120 220 90 225 75 245 C95 240 125 235 152 220 Z"/>
+    <path d="M172 210 C202 220 232 225 247 245 C227 240 197 235 160 220 Z"/>
+    <path d="M152 215 C145 235 130 250 120 255 C135 250 152 235 181 220 Z"/>
+    <path d="M170 215 C177 235 192 250 202 255 C187 250 170 235 161 220 Z"/>
+    <path d="M158 215 L155 258 L161 245 L167 258 L164 215 Z"/>
+  </g>
+
+  <g id="brand-text" fill="#2E3A23" text-anchor="middle">
+    <text x="161" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" letter-spacing="1.5">MOHMITTI</text>
+    <text x="161" y="332" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="2">LOVE FOR THE SOIL</text>
+  </g>
+</svg>
