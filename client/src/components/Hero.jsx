@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronRight, Heart } from 'lucide-react';
+import { Star, ChevronRight, Heart, Check } from 'lucide-react';
 
 import dracaenaDragonTreeImg from '../assets/plants/darcena.webp';
 import snakePlantImg from '../assets/plants/snake_plant.webp';
@@ -48,9 +48,10 @@ const plants = [
     }
 ];
 
-const Hero = () => {
+const Hero = ({ onAddToShelf }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeTab, setActiveTab] = useState('overview');
+    const [addedItem, setAddedItem] = useState(null);
 
     // Auto-play interval
     useEffect(() => {
@@ -219,12 +220,32 @@ const Hero = () => {
 
                                 {/* CTAs */}
                                 <div className="flex items-center gap-4">
-                                    <button className="flex-1 bg-amber-400 text-[#3d3226] rounded-full py-4 px-6 font-bold hover:bg-amber-500 transition-all hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-2 group">
-                                        Add to your shelf
-                                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </button>
-                                    <button className="w-14 h-14 flex items-center justify-center rounded-full bg-white/60 text-[#8b7355] hover:text-rose-500 border border-white/40 shadow-sm hover:shadow-md transition-all active:scale-95">
-                                        <Heart className="w-5 h-5" />
+                                    <button 
+                                        onClick={() => { 
+                                            if (onAddToShelf) {
+                                                onAddToShelf(activePlant);
+                                                setAddedItem(activePlant.id);
+                                                setTimeout(() => setAddedItem(null), 2000);
+                                            }
+                                        }}
+                                        disabled={addedItem === activePlant.id}
+                                        className={`w-full rounded-full py-4 px-6 font-bold transition-all active:scale-95 flex items-center justify-center gap-2 group ${
+                                            addedItem === activePlant.id
+                                                ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20'
+                                                : 'bg-amber-400 text-[#3d3226] hover:bg-amber-500 hover:shadow-lg hover:shadow-amber-500/20'
+                                        }`}
+                                    >
+                                        {addedItem === activePlant.id ? (
+                                            <>
+                                                <Check className="w-5 h-5" />
+                                                <span>Added to Shelf</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>Add to your shelf</span>
+                                                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            </>
+                                        )}
                                     </button>
                                 </div>
 

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import ProductModal from './components/ProductModal';
 import Footer from './components/Footer';
 import ShelfOverlay from './components/ShelfOverlay';
+import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import Home from './pages/Home';
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <main className="w-full min-h-screen relative flex flex-col">
+      <ScrollToTop />
       <Navbar shelfItems={shelfItems} onOpenShelf={() => setIsShelfOpen(true)} />
 
       <div className="flex-grow">

@@ -5,7 +5,7 @@ import PlantShowcase from '../components/PlantShowcase';
 const Home = ({ onPlantClick, onAddToShelf }) => {
     return (
         <div className="w-full min-h-screen">
-            <Hero />
+            <Hero onAddToShelf={onAddToShelf} />
             <PlantShowcase
                 onPlantClick={onPlantClick}
                 onAddToShelf={onAddToShelf}

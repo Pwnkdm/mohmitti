@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Instagram, Twitter, Facebook, Mail, ArrowRight } from 'lucide-react';
 
 const Footer = () => {
@@ -9,12 +10,12 @@ const Footer = () => {
             <div className="absolute bottom-0 right-10 w-96 h-96 bg-amber-900/10 rounded-full blur-[80px] pointer-events-none translate-y-1/2"></div>
 
             <div className="container mx-auto px-6 md:px-12 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
 
                     {/* Brand Info */}
-                    <div className="col-span-1 md:col-span-2 lg:col-span-1">
+                    <div className="col-span-1 md:col-span-2 lg:col-span-6 pr-0 lg:pr-12">
                         <div className="flex items-center gap-2 mb-6 group cursor-pointer">
-                            <img src="/mohmitti.svg" alt="MohMitti logo" className="w-16 h-16 object-contain drop-shadow-sm brightness-0 invert group-hover:scale-105 transition-transform" />
+                            <img src="/logo.png" alt="MohMitti logo" className="w-16 h-16 object-contain drop-shadow-sm brightness-0 invert group-hover:scale-105 transition-transform" />
                             <span className="text-2xl font-black text-stone-50 tracking-tight -ml-1">MohMitti</span>
                         </div>
                         <p className="text-stone-400 mb-6 font-medium leading-relaxed">
@@ -36,35 +37,42 @@ const Footer = () => {
                     </div>
 
                     {/* Quick Links */}
-                    <div>
-                        <h3 className="text-stone-100 font-bold mb-6 tracking-wide">Explore</h3>
+                    <div className="col-span-1 lg:col-span-3">
+                        <h3 className="text-stone-100 font-bold mb-6 tracking-wide">Company</h3>
                         <ul className="space-y-4">
-                            {['Indoor Oasis', 'Outdoor Ornamentals', 'Rare Succulents', 'Care Guides', 'Our Story'].map((link) => (
-                                <li key={link}>
-                                    <a href="#" className="text-stone-400 hover:text-amber-400 transition-colors flex items-center gap-2 group">
-                                        <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                                        {link}
-                                    </a>
-                                </li>
-                            ))}
+                            <li>
+                                <Link to="/about-us" className="text-stone-400 hover:text-amber-400 transition-colors flex items-center gap-2 group w-fit">
+                                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-transform" />
+                                    <span className="-ml-3 group-hover:ml-0 transition-all">About Us</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="text-stone-400 hover:text-amber-400 transition-colors flex items-center gap-2 group w-fit">
+                                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-transform" />
+                                    <span className="-ml-3 group-hover:ml-0 transition-all">Shop Collection</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
                     {/* Support */}
-                    <div>
-                        <h3 className="text-stone-100 font-bold mb-6 tracking-wide">Support</h3>
+                    <div className="col-span-1 lg:col-span-3">
+                        <h3 className="text-stone-100 font-bold mb-6 tracking-wide">Resources</h3>
                         <ul className="space-y-4">
-                            {['FAQ', 'Shipping & Returns', 'Track Your Order', 'Plant Doctor', 'Contact Us'].map((link) => (
-                                <li key={link}>
-                                    <a href="#" className="text-stone-400 hover:text-amber-400 transition-colors font-medium">
-                                        {link}
-                                    </a>
-                                </li>
-                            ))}
+                            <li>
+                                <Link to="/care-guide" className="text-stone-400 hover:text-amber-400 transition-colors font-medium flex items-center w-fit">
+                                    Plant Care Guide
+                                </Link>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/919878529577" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-amber-400 transition-colors font-medium flex items-center w-fit">
+                                    Contact Support
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Newsletter */}
+                    {/* Newsletter 
                     <div className="col-span-1 md:col-span-2 lg:col-span-1">
                         <h3 className="text-stone-100 font-bold mb-4 tracking-wide">Join the Botanical Club</h3>
                         <p className="text-stone-400 mb-6 text-sm font-medium">Subscribe for weekly plant care tips, exclusive drops, and 10% off your first shelf addition.</p>
@@ -85,6 +93,7 @@ const Footer = () => {
                             </button>
                         </form>
                     </div>
+                    */}
 
                 </div>
 

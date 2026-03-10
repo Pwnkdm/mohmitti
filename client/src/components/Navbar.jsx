@@ -25,7 +25,7 @@ const Navbar = ({ shelfItems = [], onOpenShelf }) => {
 
                 {/* Logo Area */}
                 <Link to="/" className="flex items-center gap-2 cursor-pointer group">
-                    <img src="/mohmitti.svg" alt="MohMitti logo" className="w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-sm group-hover:scale-105 transition-transform" />
+                    <img src="/logo.png" alt="MohMitti logo" className="w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-sm group-hover:scale-105 transition-transform" />
                     <span className="text-lg md:text-xl font-black text-emerald-950 tracking-tight -ml-1">MohMitti</span>
                 </Link>
 
