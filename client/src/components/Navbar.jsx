@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import plantSvg from '../assets/plant.svg';
 
+const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'About Us', path: '/about-us' },
+    { label: 'Care Guide', path: '/care-guide' },
+];
+
 const Navbar = ({ shelfItems = [], onOpenShelf }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,22 +24,25 @@ const Navbar = ({ shelfItems = [], onOpenShelf }) => {
             <div className="bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-full px-4 md:px-6 py-2 md:py-3 flex items-center justify-between transition-all duration-300 hover:bg-white/50">
 
                 {/* Logo Area */}
-                <div className="flex items-center gap-2 cursor-pointer group">
+                <Link to="/" className="flex items-center gap-2 cursor-pointer group">
                     <img src="/mohmitti.svg" alt="MohMitti logo" className="w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-sm group-hover:scale-105 transition-transform" />
                     <span className="text-lg md:text-xl font-black text-emerald-950 tracking-tight -ml-1">MohMitti</span>
-                </div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
-                    {['Home', 'Collection', 'About Us', 'Care Guide'].map((item) => (
-                        <a
-                            key={item}
-                            href={`#${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-[#5c4a3d] font-semibold text-sm hover:text-emerald-700 transition-colors"
-                        >
-                            {item}
-                        </a>
-                    ))}
+                    {navItems.map((item) => {
+                        const isActive = location.pathname === item.path;
+                        return (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                className={`font-semibold text-sm transition-colors ${isActive ? 'text-emerald-700 border-b-2 border-emerald-500 pb-1' : 'text-[#5c4a3d] hover:text-emerald-700'}`}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 {/* Action Icons */}
@@ -62,16 +73,19 @@ const Navbar = ({ shelfItems = [], onOpenShelf }) => {
             {/* Mobile Navigation Menu */}
             {isMobileMenuOpen && (
                 <div className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 w-full bg-white/90 backdrop-blur-xl border border-white/60 shadow-xl rounded-3xl p-6 flex flex-col gap-4 origin-top transition-all duration-300">
-                    {['Home', 'Collection', 'About Us', 'Care Guide'].map((item) => (
-                        <a
-                            key={item}
-                            href={`#${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-[#5c4a3d] font-bold text-lg hover:text-emerald-700 transition-colors py-2 border-b border-stone-100 last:border-0"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {item}
-                        </a>
-                    ))}
+                    {navItems.map((item) => {
+                        const isActive = location.pathname === item.path;
+                        return (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                className={`font-bold text-lg transition-colors py-2 border-b border-stone-100 last:border-0 ${isActive ? 'text-emerald-700' : 'text-[#5c4a3d] hover:text-emerald-700'}`}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                     <div className="flex gap-4 mt-2">
                         <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-stone-100 text-[#5c4a3d] font-semibold hover:bg-stone-200 transition-colors border border-stone-200">
                             <Search className="w-4 h-4" /> Search

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import PlantShowcase from './components/PlantShowcase';
 import ProductModal from './components/ProductModal';
 import Footer from './components/Footer';
 import ShelfOverlay from './components/ShelfOverlay';
+
+// Pages
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
+import CareGuide from './pages/CareGuide';
 
 function App() {
   const [selectedPlant, setSelectedPlant] = useState(null);
@@ -21,8 +25,6 @@ function App() {
       }
       return [...prevItems, { plant, quantity: 1 }];
     });
-    // Optional: Auto open shelf when adding
-    // setIsShelfOpen(true);
   };
 
   const handleUpdateQuantity = (plantId, newQuantity) => {
@@ -40,13 +42,16 @@ function App() {
   };
 
   return (
-    <main className="w-full min-h-screen relative">
+    <main className="w-full min-h-screen relative flex flex-col">
       <Navbar shelfItems={shelfItems} onOpenShelf={() => setIsShelfOpen(true)} />
-      <Hero />
-      <PlantShowcase 
-        onPlantClick={setSelectedPlant} 
-        onAddToShelf={handleAddToShelf}
-      />
+
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home onPlantClick={setSelectedPlant} onAddToShelf={handleAddToShelf} />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/care-guide" element={<CareGuide />} />
+        </Routes>
+      </div>
 
       {selectedPlant && (
         <ProductModal
