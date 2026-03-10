@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import plantSvg from '../assets/plant.svg';
 
-const Navbar = () => {
+const Navbar = ({ shelfItems = [], onOpenShelf }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+
+    const totalCartCount = shelfItems.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
         <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
@@ -39,10 +41,13 @@ const Navbar = () => {
                     </button>
 
                     {/* Custom Shelf Icon container instead of standard cart */}
-                    <button className="flex items-center justify-center px-4 py-2 rounded-full bg-emerald-50 text-emerald-950 hover:bg-emerald-100 font-bold text-sm transition-all shadow-sm hover:shadow-md border border-emerald-200 gap-2 focus:outline-none">
+                    <button 
+                        onClick={onOpenShelf}
+                        className="flex items-center justify-center px-4 py-2 rounded-full bg-emerald-50 text-emerald-950 hover:bg-emerald-100 font-bold text-sm transition-all shadow-sm hover:shadow-md border border-emerald-200 gap-2 focus:outline-none"
+                    >
                         <span className="hidden sm:inline">Your Plants</span>
                         <img src={plantSvg} alt="Plant icon" className="w-5 h-5 object-contain" />
-                        <span className="bg-emerald-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center ml-1">0</span>
+                        <span className="bg-emerald-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center ml-1">{totalCartCount}</span>
                     </button>
 
                     <button 

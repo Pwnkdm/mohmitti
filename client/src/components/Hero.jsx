@@ -2,31 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronRight, Heart } from 'lucide-react';
 
-// Import images
-import monsteraImg from '../assets/monstera.png';
-import snakePlantImg from '../assets/snake_plant.png';
-import fiddleLeafImg from '../assets/fiddle_leaf.png';
+import dracaenaDragonTreeImg from '../assets/plants/darcena.webp';
+import snakePlantImg from '../assets/plants/snake_plant.webp';
+import peaceLilyImg from '../assets/plants/peace_lily.webp';
 
 const plants = [
     {
-        id: 'monstera',
-        name: 'Monstera Deliciosa',
-        shortName: 'Monstera',
-        subtitle: 'The iconic Swiss Cheese Plant',
-        rating: 4.9,
+        id: 'dracaena-dragon-tree',
+        name: 'Dracaena deremensis',
+        shortName: 'Dragon Tree',
+        subtitle: 'The versatile air purifier',
+        rating: 4.8,
         curatorName: 'Sarah Jenkins',
         curatorAvatar: 'https://i.pravatar.cc/150?u=sarah',
-        description: 'Known for its stunning split leaves, the Monstera Deliciosa is a statement piece that brings tropical vibes to any modern living space. Easy to care for and fast-growing.',
-        image: monsteraImg,
-        thumbnail: monsteraImg,
+        description: 'With its sword-like leaves, the Dragon Tree brings tropical vibes and excellent air-purifying qualities to your indoor space with very low-maintenance needs.',
+        image: dracaenaDragonTreeImg,
+        thumbnail: dracaenaDragonTreeImg,
         bgColor: 'from-[#e8f0ea] to-[#dce5df]',
     },
     {
         id: 'snake-plant',
         name: 'Sansevieria Trifasciata',
         shortName: 'Snake Plant',
-        subtitle: 'The ultimate air purifier',
-        rating: 4.8,
+        subtitle: 'The ultimate survivor',
+        rating: 4.9,
         curatorName: 'Marcus Chen',
         curatorAvatar: 'https://i.pravatar.cc/150?u=marcus',
         description: 'An architectural beauty that is nearly indestructible. The Snake Plant purifies your air efficiently while requiring minimal watering and thriving in almost any light condition.',
@@ -35,16 +34,16 @@ const plants = [
         bgColor: 'from-[#f0f4e8] to-[#e4eadc]',
     },
     {
-        id: 'fiddle-leaf',
-        name: 'Ficus Lyrata',
-        shortName: 'Fiddle Leaf Fig',
-        subtitle: 'The designer\'s favorite',
+        id: 'peace-lily',
+        name: 'Spathiphyllum wallisii',
+        shortName: 'Peace Lily',
+        subtitle: 'Elegance and serenity',
         rating: 4.7,
         curatorName: 'Elena Russo',
         curatorAvatar: 'https://i.pravatar.cc/150?u=elena',
-        description: 'With its large, violin-shaped leaves, the Fiddle Leaf Fig is the darling of interior design. It creates a bold, sculptural focal point in bright, indirect light.',
-        image: fiddleLeafImg,
-        thumbnail: fiddleLeafImg,
+        description: 'Famous for its striking white blooms and lush green leaves, the Peace Lily is excellent at filtering indoor air and instantly elevates any room.',
+        image: peaceLilyImg,
+        thumbnail: peaceLilyImg,
         bgColor: 'from-[#f4efe6] to-[#eadfcf]',
     }
 ];
@@ -182,7 +181,7 @@ const Hero = () => {
                                     </div>
                                 </div>
 
-                                {/* Curator */}
+                                {/* Curator (Commented out temporarily)
                                 <div className="flex items-center gap-3 mb-6 bg-[#f4efe6]/50 p-3 rounded-2xl border border-white/50">
                                     <img src={activePlant.curatorAvatar} alt={activePlant.curatorName} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
                                     <div>
@@ -190,6 +189,7 @@ const Hero = () => {
                                         <p className="text-sm font-semibold text-emerald-950">{activePlant.curatorName}</p>
                                     </div>
                                 </div>
+                                */}
 
                                 {/* Tabs */}
                                 <div className="flex gap-6 border-b border-stone-200/50 mb-6">

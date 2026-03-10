@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sun, Droplets, CloudRain, Ruler, Info } from 'lucide-react';
 
-const ProductModal = ({ plant, onClose }) => {
+const ProductModal = ({ plant, onClose, onAddToShelf }) => {
     const [activeImage, setActiveImage] = useState('front');
 
     if (!plant) return null;
@@ -10,9 +10,6 @@ const ProductModal = ({ plant, onClose }) => {
     // Creating mock variations of the single image since we only have one per plant
     const renderImage = () => {
         switch (activeImage) {
-            case 'top':
-                // Fake a top view with a scale and slight rotation
-                return <img src={plant.image} alt="Top view" className="w-[80%] h-[80%] object-contain drop-shadow-xl scale-y-75 scale-x-110 -rotate-12 transition-all duration-500" />;
             case 'info':
                 // Fake an info graphic view with lines
                 return (
@@ -86,7 +83,6 @@ const ProductModal = ({ plant, onClose }) => {
                         <div className="p-4 flex justify-center gap-4 bg-white/30 border-t border-white/20">
                             {[
                                 { id: 'front', label: 'Front' },
-                                { id: 'top', label: 'Top View' },
                                 { id: 'info', label: 'Dimensions', icon: <Info className="w-3 h-3 ml-1 inline" /> }
                             ].map(img => (
                                 <button
@@ -165,7 +161,13 @@ const ProductModal = ({ plant, onClose }) => {
 
                         {/* Custom CTA */}
                         <div className="mt-8 pt-4 border-t border-white/30">
-                            <button className="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 hover:text-amber-950 rounded-full py-5 px-6 font-black text-lg transition-all hover:shadow-[0_10px_20px_rgba(251,191,36,0.3)] active:scale-95 flex items-center justify-center gap-3 group relative overflow-hidden focus:outline-none border border-amber-300">
+                            <button 
+                                onClick={() => {
+                                    if (onAddToShelf) onAddToShelf(plant);
+                                    onClose(); // Optional: close the modal after adding
+                                }}
+                                className="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 hover:text-amber-950 rounded-full py-5 px-6 font-black text-lg transition-all hover:shadow-[0_10px_20px_rgba(251,191,36,0.3)] active:scale-95 flex items-center justify-center gap-3 group relative overflow-hidden focus:outline-none border border-amber-300"
+                            >
                                 <span className="relative z-10 transition-transform group-hover:-translate-y-1">Add to your shelf</span>
                                 <div className="absolute inset-0 h-full w-full bg-amber-500 translate-y-[100%] rounded-full group-hover:translate-y-[0%] transition-transform duration-300 ease-in-out z-0"></div>
                             </button>

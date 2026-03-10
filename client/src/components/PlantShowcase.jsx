@@ -1,114 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Check } from 'lucide-react';
+import { showcasePlants } from '../data/plantsData';
 
-// Import images
-import monsteraImg from '../assets/monstera.png';
-import snakePlantImg from '../assets/snake_plant.png';
-import fiddleLeafImg from '../assets/fiddle_leaf.png';
-import arecaPalmImg from '../assets/areca_palm.png';
-import moneyPlantImg from '../assets/money_plant.png';
-import peaceLilyImg from '../assets/peace_lily.png';
-import rubberPlantImg from '../assets/rubber_plant.png';
-import jasmineImg from '../assets/Jasmine.png';
-import bougainvilleaImg from '../assets/bougenvilia.png';
-import cannaLilyImg from '../assets/canna_lily.png';
-import ixoraImg from '../assets/ixora_plant.png';
 
-const showcasePlants = [
-    // Indoor Plants
-    {
-        id: 'monstera',
-        name: 'Monstera Deliciosa',
-        subtitle: 'Swiss Cheese Plant',
-        price: '₹1,299',
-        image: monsteraImg,
-        category: 'indoor'
-    },
-    {
-        id: 'snake-plant',
-        name: 'Sansevieria Trifasciata',
-        subtitle: 'Snake Plant',
-        price: '₹899',
-        image: snakePlantImg,
-        category: 'indoor'
-    },
-    {
-        id: 'fiddle-leaf',
-        name: 'Ficus Lyrata',
-        subtitle: 'Fiddle Leaf Fig',
-        price: '₹1,599',
-        image: fiddleLeafImg,
-        category: 'indoor'
-    },
-    {
-        id: 'peace-lily',
-        name: 'Spathiphyllum Wallisii',
-        subtitle: 'Peace Lily',
-        price: '₹750',
-        image: peaceLilyImg,
-        category: 'indoor'
-    },
-    {
-        id: 'areca-palm',
-        name: 'Dypsis Lutescens',
-        subtitle: 'Areca Palm',
-        price: '₹1,099',
-        image: arecaPalmImg,
-        category: 'indoor'
-    },
-    {
-        id: 'money-plant',
-        name: 'Epipremnum Aureum',
-        subtitle: 'Money Plant',
-        price: '₹450',
-        image: moneyPlantImg,
-        category: 'indoor'
-    },
-    {
-        id: 'rubber-plant',
-        name: 'Ficus Elastica',
-        subtitle: 'Rubber Plant',
-        price: '₹850',
-        image: rubberPlantImg,
-        category: 'indoor'
-    },
-    // Outdoor / Ornamental Plants
-    {
-        id: 'bougainvillea',
-        name: 'Bougainvillea Glabra',
-        subtitle: 'Paper Flower',
-        price: '₹1,150',
-        image: bougainvilleaImg,
-        category: 'outdoor'
-    },
-    {
-        id: 'jasmine',
-        name: 'Jasminum',
-        subtitle: 'Jasmine Plant',
-        price: '₹499',
-        image: jasmineImg,
-        category: 'outdoor'
-    },
-    {
-        id: 'canna-lily',
-        name: 'Canna Indica',
-        subtitle: 'Canna Lily',
-        price: '₹650',
-        image: cannaLilyImg,
-        category: 'outdoor'
-    },
-    {
-        id: 'ixora',
-        name: 'Ixora Coccinea',
-        subtitle: 'Jungle Geranium',
-        price: '₹550',
-        image: ixoraImg,
-        category: 'outdoor'
-    }
-];
-
-const PlantShowcase = ({ onPlantClick }) => {
+const PlantShowcase = ({ onPlantClick, onAddToShelf }) => {
     const [activeCategory, setActiveCategory] = useState('indoor');
+    const [addedItems, setAddedItems] = useState({});
+
+    const handleAddClick = (e, plant) => {
+        e.stopPropagation();
+        if (onAddToShelf) onAddToShelf(plant);
+        
+        setAddedItems(prev => ({ ...prev, [plant.id]: true }));
+        setTimeout(() => {
+            setAddedItems(prev => ({ ...prev, [plant.id]: false }));
+        }, 2000);
+    };
 
     const filteredPlants = showcasePlants.filter(plant => plant.category === activeCategory);
 
@@ -190,9 +98,24 @@ const PlantShowcase = ({ onPlantClick }) => {
 
                                     <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/10">
                                         <span className="text-lg font-black text-amber-500">{plant.price}</span>
-                                        <button className="flex items-center justify-center bg-white/10 hover:bg-amber-500 hover:text-amber-950 text-stone-200 rounded-full px-3 py-1.5 text-xs font-bold transition-all border border-white/10 hover:border-amber-400 shadow-sm">
-                                            View
-                                        </button>
+                                        <div className="flex gap-2">
+                                            <button 
+                                                onClick={(e) => handleAddClick(e, plant)}
+                                                className={`flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold transition-all border shadow-sm ${
+                                                    addedItems[plant.id] 
+                                                    ? "bg-emerald-500 text-emerald-950 border-emerald-400" 
+                                                    : "bg-amber-500 hover:bg-amber-400 text-amber-950 border-amber-400"
+                                                }`}
+                                            >
+                                                {addedItems[plant.id] ? (
+                                                    <>
+                                                        <Check className="w-3.5 h-3.5 mr-1 stroke-[3]" /> Added
+                                                    </>
+                                                ) : (
+                                                    "Add +"
+                                                )}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
